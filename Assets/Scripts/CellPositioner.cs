@@ -37,8 +37,6 @@ public class CellPositioner : Singleton<CellPositioner>
                     }
                 }
 
-                Debug.Log(newCells.Count);
-
                 newCells = newCells.OrderBy(x => x.transform.localPosition.y).ToList();
 
                 foreach (var newCell in newCells)
