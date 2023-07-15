@@ -23,15 +23,11 @@ public class CellsCollector : MonoBehaviour
 
     private void ChooseCell (Cell newCell)
     {
-        Cell cell = newCell;
-
         foreach(var el in cells)
         {
             if (el == newCell)
             {
-                cell = el;
-
-                RemovePoints(cell);
+                RemovePoints(el);
 
                 collectorVisual.UpdatePoints(GetPositions());
 
@@ -51,7 +47,7 @@ public class CellsCollector : MonoBehaviour
         }
         else
         {
-            CheckCells(cell);
+            CheckCells(newCell);
         }
 
         collectorVisual.UpdatePoints(GetPositions());

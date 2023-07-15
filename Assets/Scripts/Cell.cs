@@ -7,27 +7,26 @@ public class Cell : MonoBehaviour
 {
     [SerializeField] private TMP_Text wordText;
     [SerializeField] private SpriteRenderer sprite;
-
+    [SerializeField] private BoxCollider boxCollider;
 
     private string category;
 
     private bool choosen = false;
 
-    public CellState CellState { get; set; }
     public int Weird { get; set; } = 1;
     public string Category => category;
     public bool Choosen => choosen;
-
-    private void Start()
-    {
-        CellState = CellState.Default;
-    }
+    public bool Enabled => boxCollider.enabled;
 
     public void InitCell (string category, string word)
     {
+        Weird = 1;
         this.category = category;
 
         wordText.text = word;
+
+        boxCollider.enabled = true;
+        SetChoosen(false);
     }
 
     public void SetChoosen (bool value)
@@ -59,13 +58,6 @@ public class Cell : MonoBehaviour
         color.a = 0.4f;
         sprite.color = color;
         wordText.text = "";
-        Destroy(GetComponent<BoxCollider>());
+        boxCollider.enabled = false;
     }
-}
-
-public enum CellState
-{
-    Default = 0,
-    Update,
-    NonInterctable
 }
