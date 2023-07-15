@@ -10,6 +10,7 @@ public class FieldGenerator : Singleton<FieldGenerator>
     [SerializeField] private int rows = 5;
     [SerializeField] private int columns = 8;
 
+
     public void GenerateField (ref List<Cell> cells)
     {
         float stepRows = localPosiotions.x * 2.5f * -1;

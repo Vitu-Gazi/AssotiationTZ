@@ -8,13 +8,14 @@ public class GameField : Singleton<GameField>
     [SerializeField] private int level = 1;
     [SerializeField] private int wordsNumber = 40;
 
-    [SerializeField] private List<FieldWords> fieldWords = new List<FieldWords>();
+    private List<FieldWords> fieldWords = new List<FieldWords>();
 
     private List<Cell> cells = new List<Cell>();
 
     private void Start()
     {
         FieldGenerator.Instance.GenerateField(ref cells);
+        CellPositioner.Instance.InitCellPositions(cells);
         WordInit();
     }
 
@@ -92,6 +93,8 @@ public class GameField : Singleton<GameField>
                 return;
             }
         }
+
+        CellPositioner.Instance.UpdateCellPositions();
 
         foreach (var field in fieldWords)
         {
@@ -183,6 +186,8 @@ public class GameField : Singleton<GameField>
             }
 
             cell.SetNonInteractable();
+
+            CellPositioner.Instance.UpdateCellPositions();
         }
 
         foreach (var field in fieldWords)
